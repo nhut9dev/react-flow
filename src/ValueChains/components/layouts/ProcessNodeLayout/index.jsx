@@ -10,14 +10,14 @@ const ProcessNodeLayout = ({ data }) => {
 					position="left"
 					style={{ opacity: 0, left: 0 }}
 					onConnect={(params) => console.log('handle onConnect', params)}
-					isConnectable={data?.isConnectable}
+					isConnectable={false}
 				/>
 				<div>{data?.label}</div>
 				<Handle
 					type="source"
 					position="right"
 					style={{ opacity: 0, right: -20 }}
-					isConnectable={data?.isConnectable}
+					isConnectable={false}
 				/>
 			</div>
 		</div>

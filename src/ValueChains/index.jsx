@@ -1,8 +1,14 @@
 import { useCallback } from 'react';
-import ReactFlow, { addEdge, useEdgesState, useNodesState } from 'reactflow';
+import ReactFlow, {
+	MarkerType,
+	addEdge,
+	useEdgesState,
+	useNodesState
+} from 'reactflow';
 import 'reactflow/dist/style.css';
 import SegmentNodeLayout from './components/layouts/SegmentNodeLayout';
 import ProcessNodeLayout from './components/layouts/ProcessNodeLayout';
+import ArrowEdge from './components/layouts/ArrowEdge';
 
 const nodesData = Array(10)
 	.fill()
@@ -21,6 +27,7 @@ const nodesData = Array(10)
 							  210,
 					y: 100 + (index > 4 ? 300 : 0)
 				},
+				dragHandle: '.custom-drag-handle',
 				data: {
 					label: index + 1,
 					isFirst: index === 1 || index === 6,
@@ -29,35 +36,34 @@ const nodesData = Array(10)
 			}
 		];
 	}, []);
-// .map((_, index) => {
-// 	return {
-// 		id: `${index + 1}`,
-// 		type: index === 0 || index === 5 ? 'process' : 'segment',
-// 		position: {
-// 			x: ((index % 5) + 1) * 210 + (index === 1 || index === 5 ? 50 : 0),
-// 			y: 100 + (index > 4 ? 300 : 0)
-// 		},
-// 		data: {
-// 			label: index + 1,
-// 			isFirst: index === 1 || index === 6,
-// 			isEnd: index === 4 || index === 9
-// 		}
-// 	};
-// });
 
 const initialEdges = [
 	{
 		id: 'e1-2',
 		source: '5',
 		target: '6',
+		markerEnd: {
+			type: MarkerType.ArrowClosed,
+			width: 14,
+			height: 14,
+			color: '#FF0072'
+		},
+		style: {
+			strokeWidth: 2,
+			stroke: '#FF0072'
+		},
 
-		type: 'smoothstep'
+		type: 'arrowEdge'
 	}
 ];
 
 const nodeTypes = {
 	segment: SegmentNodeLayout,
 	process: ProcessNodeLayout
+};
+
+const edgeTypes = {
+	arrowEdge: ArrowEdge
 };
 
 const ValueChains = () => {
@@ -82,6 +88,7 @@ const ValueChains = () => {
 			</div>
 			<ReactFlow
 				nodeTypes={nodeTypes}
+				edgeTypes={edgeTypes}
 				onNodeDragStart={(node1, node2, node3, node4) =>
 					console.log(node1, node2, node3, node4)
 				}
