@@ -1,0 +1,61 @@
+.segmentNodeLayoutWrapper {
+	width: 200px;
+	height: 60px;
+}
+
+.segmentNodeLayout,
+.firstSegmentNodeLayout {
+	width: 200px;
+	height: 60px;
+	position: relative;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border-top: 1px solid black;
+	border-bottom: 1px solid black;
+}
+
+.firstSegmentNodeLayout {
+	border-left: 1px solid black;
+}
+
+.triangleAfter,
+.triangleBefore {
+	position: absolute;
+}
+
+.triangleAfter {
+	left: -9px;
+	top: 15px;
+	rotate: 60deg;
+	width: 36px;
+	border-top: 1px solid black;
+
+	&::after {
+		content: '';
+		position: absolute;
+		rotate: 60deg;
+		left: 26px;
+		bottom: -15px;
+		width: 36px;
+		border-top: 1px solid black;
+	}
+}
+
+.triangleBefore {
+	right: -27px;
+	top: 15px;
+	rotate: 60deg;
+	width: 36px;
+	border-top: 1px solid black;
+
+	&::after {
+		content: '';
+		position: absolute;
+		rotate: 60deg;
+		left: 26px;
+		bottom: -15px;
+		width: 36px;
+		border-top: 1px solid black;
+	}
+}
