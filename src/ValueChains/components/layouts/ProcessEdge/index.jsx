@@ -7,7 +7,7 @@ import {
 	useReactFlow
 } from 'reactflow';
 
-const CustomEdge = ({
+const ProcessEdge = ({
 	id,
 	sourceX,
 	sourceY,
@@ -29,7 +29,6 @@ const CustomEdge = ({
 		centerX: targetX - 50,
 		centerY: targetY - 50
 	});
-	console.log('🚀 ~ edgePath:', edgePath);
 
 	return (
 		<>
@@ -51,4 +50,4 @@ const CustomEdge = ({
 	);
 };
 
-export default CustomEdge;
+export default ProcessEdge;

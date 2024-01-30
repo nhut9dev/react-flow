@@ -6,9 +6,9 @@ import ReactFlow, {
 	useNodesState
 } from 'reactflow';
 import 'reactflow/dist/style.css';
-import SegmentNodeLayout from './components/layouts/SegmentNodeLayout';
-import ProcessNodeLayout from './components/layouts/ProcessNodeLayout';
-import ArrowEdge from './components/layouts/ArrowEdge';
+import processList from './constants/processList';
+import { convertEdgesData, convertNodesData } from '../utils';
+import { edgeTypes, nodeTypes } from './constants/react-flow';
 
 const nodesData = Array(10)
 	.fill()
@@ -57,35 +57,23 @@ const initialEdges = [
 	}
 ];
 
-const nodeTypes = {
-	segment: SegmentNodeLayout,
-	process: ProcessNodeLayout
-};
-
-const edgeTypes = {
-	arrowEdge: ArrowEdge
-};
-
 const ValueChains = () => {
-	const [nodes, setNodes, onNodesChange] = useNodesState(nodesData);
-	const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
+	const [nodes, setNodes, onNodesChange] = useNodesState(
+		convertNodesData(processList)
+	);
+	const [edges, setEdges, onEdgesChange] = useEdgesState(
+		convertEdgesData(processList)
+	);
 
 	const onConnect = useCallback(
 		(params) => setEdges((eds) => addEdge(params, eds)),
 		[setEdges]
 	);
 
+	console.log('🚀 ~ ValueChains ~ nodes:', edges);
+
 	return (
 		<>
-			<div>
-				<button
-					onClick={() => {
-						console.log(nodes);
-					}}
-				>
-					nodes
-				</button>
-			</div>
 			<ReactFlow
 				nodeTypes={nodeTypes}
 				edgeTypes={edgeTypes}
