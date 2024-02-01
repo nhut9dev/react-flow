@@ -2,28 +2,87 @@ const subSegmentList = (id) => {
 	return [
 		{
 			id: `sub-segment-${id}-1`,
-			name: `Phân đoạn nhánh ${id}-1`,
-			prevId: `segment-${id}-1`,
-			nextId: `sub-segment-${id}-2`
+			nodes: [
+				{
+					id: `sub-segment-${id}-1`,
+					name: `Phân đoạn nhánh ${id}-1`,
+					prevId: `segment-${id}-2`,
+					nextId: `sub-segment-${id}-2`,
+					type: 'subSegment'
+				},
+				{
+					id: `sub-segment-${id}-2`,
+					name: `Phân đoạn nhánh ${id}-2`,
+					prevId: `sub-segment-${id}-1`,
+					nextId: `segment-${id}-22a`,
+					type: 'subSegment'
+				},
+				{
+					id: `sub-segment-${id}-22a`,
+					name: `Phân đoạn nhánh ${id}-22a`,
+					prevId: `sub-segment-${id}-2`,
+					nextId: `segment-${id}-6`,
+					type: 'subSegment'
+				}
+			]
 		},
-		{
-			id: `sub-segment-${id}-2`,
-			name: `Phân đoạn nhánh ${id}-2`,
-			prevId: `sub-segment-${id}-1`,
-			nextId: `segment-${id}-4`
-		},
-
 		{
 			id: `sub-segment-${id}-3`,
-			name: `Phân đoạn nhánh ${id}-3`,
-			prevId: `segment-${id}-4`,
-			nextId: `sub-segment-${id}-4`
+			nodes: [
+				{
+					id: `sub-segment-${id}-3`,
+					name: `Phân đoạn nhánh ${id}-3`,
+					prevId: `segment-${id}-4`,
+					nextId: `sub-segment-${id}-4`,
+					type: 'subSegment'
+				},
+				{
+					id: `sub-segment-${id}-4`,
+					name: `Phân đoạn nhánh ${id}-4`,
+					prevId: `sub-segment-${id}-3`,
+					nextId: `sub-segment-${id}-4g`,
+					type: 'subSegment'
+				},
+
+				{
+					id: `sub-segment-${id}-4g`,
+					name: `Phân đoạn nhánh ${id}-4g`,
+					prevId: `sub-segment-${id}-4`,
+					nextId: null,
+					type: 'subSegment'
+				}
+			]
 		},
 		{
-			id: `sub-segment-${id}-4`,
-			name: `Phân đoạn nhánh ${id}-1`,
-			prevId: `sub-segment-${id}-3`,
-			nextId: null
+			id: `sub-segment-${id}-a`,
+			nodes: [
+				{
+					id: `sub-segment-${id}-a`,
+					name: `Phân đoạn nhánh ${id}-a`,
+					prevId: `segment-${id}-1`,
+					nextId: `segment-${id}-2`,
+					type: 'subSegment'
+				},
+				{
+					id: `sub-segment-${id}-b`,
+					name: `Phân đoạn nhánh ${id}-b`,
+					prevId: `sub-segment-${id}-a`,
+					nextId: `segment-${id}-3`,
+					type: 'subSegment'
+				}
+			]
+		},
+		{
+			id: `sub-segment-${id}-one`,
+			nodes: [
+				{
+					id: `sub-segment-${id}-one`,
+					name: `Phân đoạn nhánh ${id}-one`,
+					prevId: `segment-${id}-3`,
+					nextId: `segment-${id}-4`,
+					type: 'subSegment'
+				}
+			]
 		}
 	];
 };
@@ -87,7 +146,7 @@ const processList = [
 		id: 'process-1',
 		name: 'Tiến trình 1',
 		segmentList: segmentList(1),
-		subSegmentList: subSegmentList(1),
+		subSegmentChains: subSegmentList(1),
 		type: 'process',
 		color: 'a'
 	},
@@ -102,7 +161,7 @@ const processList = [
 		id: 'process-3',
 		name: 'Tiến trình 3',
 		segmentList: segmentList(3),
-		subSegmentList: subSegmentList(3),
+		subSegmentChains: subSegmentList(3),
 		type: 'process',
 		color: 'c'
 	}

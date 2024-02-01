@@ -3,9 +3,15 @@ import ProcessEgde from '../components/layouts/ProcessEdge';
 import ProcessNodeLayout from '../components/layouts/ProcessNodeLayout';
 import SegmentNodeLayout from '../components/layouts/SegmentNodeLayout';
 
+export const layoutConstant = {
+	subSegment: {
+		width: 170
+	}
+};
+
 const nodeLayout = {
-	width: 200,
-	height: 60
+	width: 230,
+	height: 70
 };
 const edgeLayout = {};
 

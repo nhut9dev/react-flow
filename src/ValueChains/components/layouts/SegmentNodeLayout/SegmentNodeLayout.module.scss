@@ -1,10 +1,11 @@
 .segmentNodeLayout {
-	width: 200px;
-	height: 60px;
+	width: 230px;
+	height: 70px;
 	position: relative;
 	display: flex;
 	align-items: center;
 	justify-content: center;
+	background: #ffffff;
 	.content {
 		position: absolute;
 	}
