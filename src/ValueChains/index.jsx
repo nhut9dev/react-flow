@@ -1,16 +1,14 @@
 import { useCallback } from 'react';
-import ReactFlow, {
-	MarkerType,
-	addEdge,
-	useEdgesState,
-	useNodesState
-} from 'reactflow';
+import ReactFlow, { addEdge, useEdgesState, useNodesState } from 'reactflow';
 import 'reactflow/dist/style.css';
 import processList from './constants/processList';
 import { convertEdgesData, convertNodesData } from '../utils';
 import { edgeTypes, nodeTypes } from './constants/react-flow';
+import { useNodeStore } from '../hooks/useStores';
 
 const ValueChains = () => {
+	const { selectedNode, setSelectedNode } = useNodeStore();
+
 	const [nodes, setNodes, onNodesChange] = useNodesState(
 		convertNodesData(processList)
 	);
@@ -39,6 +37,16 @@ const ValueChains = () => {
 				onNodesChange={onNodesChange}
 				onEdgesChange={onEdgesChange}
 				onConnect={onConnect}
+				onEdgeClick={() => {
+					if (selectedNode) {
+						setSelectedNode(null);
+					}
+				}}
+				onPaneClick={() => {
+					if (selectedNode) {
+						setSelectedNode(null);
+					}
+				}}
 			/>
 		</>
 	);

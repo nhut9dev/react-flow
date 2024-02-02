@@ -1,0 +1,19 @@
+.relativeWrapper {
+	position: relative;
+	display: flex;
+	justify-content: center;
+}
+
+.nodeToolbar {
+	position: absolute;
+	top: 4px;
+	height: 36px;
+	min-width: 100px;
+	background: #ffffff;
+	border: 1px solid black;
+
+	display: flex;
+	align-items: center;
+	justify-content: space-evenly;
+	z-index: 3;
+}

@@ -90,7 +90,7 @@ const convertNodesData = (nodes) => {
 					.sort((a, b) => a.level - b.level);
 
 				const subChains = subSegmentChains.map((item) => {
-					subY += nodeLayout.height * 1.5;
+					subY += nodeLayout.height * 1.6;
 					return item.nodes.map((sub, idx) => {
 						subX = idx
 							? subX + layoutConstant.subSegment.width
@@ -144,8 +144,8 @@ const convertEdgesData = (nodes) => {
 				targetHandle: 'targetProcess',
 				markerEnd: {
 					type: MarkerType.ArrowClosed,
-					width: 14,
-					height: 14,
+					width: 20,
+					height: 20,
 					color: '#FF0072'
 				},
 				style: {
@@ -220,8 +220,6 @@ const convertEdgesData = (nodes) => {
 					});
 			});
 		});
-
-	console.log(subEdges);
 
 	return [...processEdges, ...subEdges.flat(Infinity)];
 };

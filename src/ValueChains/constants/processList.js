@@ -43,7 +43,6 @@ const subSegmentList = (id) => {
 					nextId: `sub-segment-${id}-4g`,
 					type: 'subSegment'
 				},
-
 				{
 					id: `sub-segment-${id}-4g`,
 					name: `Phân đoạn nhánh ${id}-4g`,
@@ -67,7 +66,14 @@ const subSegmentList = (id) => {
 					id: `sub-segment-${id}-b`,
 					name: `Phân đoạn nhánh ${id}-b`,
 					prevId: `sub-segment-${id}-a`,
-					nextId: `segment-${id}-3`,
+					nextId: `sub-segment-${id}-4g2`,
+					type: 'subSegment'
+				},
+				{
+					id: `sub-segment-${id}-4g2`,
+					name: `Phân đoạn nhánh ${id}-4g2`,
+					prevId: `sub-segment-${id}-b`,
+					nextId: `segment-${id === 1 ? 3 : 1}-7`,
 					type: 'subSegment'
 				}
 			]

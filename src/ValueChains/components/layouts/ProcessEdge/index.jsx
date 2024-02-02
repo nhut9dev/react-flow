@@ -26,8 +26,8 @@ const ProcessEdge = ({
 		targetX,
 		targetY,
 		targetPosition,
-		centerX: targetX - 50,
-		centerY: targetY - 50
+		centerX: targetX - 80,
+		centerY: targetY - 80
 	});
 
 	return (

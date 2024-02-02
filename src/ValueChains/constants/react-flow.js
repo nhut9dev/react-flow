@@ -1,5 +1,4 @@
 import ProcessEdge from '../components/layouts/ProcessEdge';
-import ProcessEgde from '../components/layouts/ProcessEdge';
 import ProcessNodeLayout from '../components/layouts/ProcessNodeLayout';
 import SegmentNodeLayout from '../components/layouts/SegmentNodeLayout';
 
