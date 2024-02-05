@@ -1,18 +1,10 @@
 import { useRef } from 'react';
 import styles from './NodeToolbar.module.scss';
 import PlusIcon from './plus-circle.svg?react';
-import useClickOutside from '../../../hooks/useClickOutside';
 import ColorPicker from '../ColorPicker';
 
-const NodeToolbar = ({ open, setOpen, width }) => {
-	const customRef = useRef();
+const NodeToolbar = ({ open, width, node }) => {
 	const ref = useRef();
-
-	useClickOutside(ref, customRef, () => {
-		if (open) {
-			setOpen(false);
-		}
-	});
 
 	return (
 		<div ref={ref} className={styles.relativeWrapper}>
@@ -21,7 +13,11 @@ const NodeToolbar = ({ open, setOpen, width }) => {
 				style={{ width: width, display: open ? 'flex' : 'none' }}
 			>
 				<PlusIcon />
-				<ColorPicker toolbarOpen={open} />
+				<ColorPicker
+					toolbarOpen={open}
+					backgroundColor={node.style.backgroundColor}
+					textColor={node.style.color}
+				/>
 			</div>
 		</div>
 	);

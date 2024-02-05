@@ -81,9 +81,17 @@ const convertNodesData = (nodes) => {
 			dragHandle: '.custom-drag-handle',
 			data: {
 				label: proc.name,
-				originData: proc
+				originData: proc,
+				style: {
+					backgroundColor: proc.backgroundColor,
+					color: proc.textColor
+				}
 			},
-			originData: proc
+			originData: proc,
+			style: {
+				backgroundColor: proc.backgroundColor,
+				color: proc.textColor
+			}
 		};
 
 		if (proc?.segmentList?.length) {
@@ -102,9 +110,17 @@ const convertNodesData = (nodes) => {
 						label: seg.name,
 						originData: seg,
 						isFirst: idx === 0,
-						isEnd: idx === proc.segmentList.length - 1
+						isEnd: idx === proc.segmentList.length - 1,
+						style: {
+							backgroundColor: seg.backgroundColor,
+							color: seg.textColor
+						}
 					},
-					originData: seg
+					originData: seg,
+					style: {
+						backgroundColor: seg.backgroundColor,
+						color: seg.textColor
+					}
 				};
 
 				return segment;
@@ -143,9 +159,18 @@ const convertNodesData = (nodes) => {
 								label: sub.name,
 								originData: sub,
 								isFirst: idx === 0,
-								isEnd: item.nodes.length === 1 || idx !== 0
+								isEnd: item.nodes.length === 1 || idx !== 0,
+								data: {},
+								style: {
+									backgroundColor: sub.backgroundColor,
+									color: sub.textColor
+								}
 							},
-							originData: sub
+							originData: sub,
+							style: {
+								backgroundColor: sub.backgroundColor,
+								color: sub.textColor
+							}
 						};
 					});
 				});

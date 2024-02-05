@@ -1,19 +1,18 @@
 import { useCallback } from 'react';
-import ReactFlow, { addEdge, useEdgesState, useNodesState } from 'reactflow';
+import ReactFlow, { addEdge, useEdgesState } from 'reactflow';
 import 'reactflow/dist/style.css';
 import processList from './constants/processList';
-import { convertEdgesData, convertNodesData } from '../utils';
+import { convertEdgesData } from '../utils';
 import { edgeTypes, nodeTypes } from './constants/react-flow';
 import { useNodeStore } from '../hooks/useStores';
 import { Button } from 'antd';
+import useChart from '../hooks/useChart';
 
 const ValueChains = () => {
 	const { selectedNode, onChangeSelectedNode } = useNodeStore();
-	console.log('🚀 ~ ValueChains ~ selectedNode:', selectedNode);
 
-	const [nodes, setNodes, onNodesChange] = useNodesState(
-		convertNodesData(processList)
-	);
+	const { nodesState, setNodes, setNodesState, onNodesChange } = useChart();
+
 	const [edges, setEdges, onEdgesChange] = useEdgesState(
 		convertEdgesData(processList)
 	);
@@ -26,10 +25,13 @@ const ValueChains = () => {
 	return (
 		<>
 			<div>
-				<Button onClick={() => console.log(nodes)}>Log nodes</Button>
+				<Button onClick={() => console.log(nodesState)}>Log nodes</Button>
+				<Button onClick={() => console.log(selectedNode)}>
+					Log Selected node
+				</Button>
 				<Button
 					onClick={() => {
-						setNodes((nodes) => {
+						setNodesState((nodes) => {
 							return nodes.map((node) => ({
 								...node,
 								data: {
@@ -51,7 +53,7 @@ const ValueChains = () => {
 			<ReactFlow
 				nodeTypes={nodeTypes}
 				edgeTypes={edgeTypes}
-				nodes={nodes}
+				nodes={nodesState}
 				edges={edges}
 				onNodesChange={onNodesChange}
 				onEdgesChange={onEdgesChange}
@@ -69,7 +71,7 @@ const ValueChains = () => {
 						onChangeSelectedNode(null, setNodes);
 					}
 				}}
-			/>
+			></ReactFlow>
 		</>
 	);
 };

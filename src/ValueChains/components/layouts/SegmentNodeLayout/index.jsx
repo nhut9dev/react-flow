@@ -8,6 +8,7 @@ import { useNodeStore } from '../../../../hooks/useStores';
 
 const SegmentNodeLayout = ({ data }) => {
 	const { selectedNode } = useNodeStore();
+
 	return (
 		<div
 			className={styles.segmentNodeLayoutWrapper}
@@ -35,9 +36,21 @@ const SegmentNodeLayout = ({ data }) => {
 						}
 					/>
 				) : (
-					<Segment style={{ height: '100%', width: '100%' }} />
+					<Segment
+						style={{ height: '100%', width: '100%' }}
+						fill={
+							data?.style?.backgroundColor
+								? data?.style?.backgroundColor
+								: '#ffffff'
+						}
+					/>
 				)}
-				<div className={styles.content}>{data?.label}</div>
+				<div
+					className={styles.content}
+					style={{ color: data?.style?.color || '#272727' }}
+				>
+					{data?.label}
+				</div>
 
 				{/* Segment */}
 				{data.originData.type === 'segment' && (
@@ -101,6 +114,7 @@ const SegmentNodeLayout = ({ data }) => {
 						: 170
 				}
 				open={data?.originData.id === selectedNode?.id}
+				node={data}
 			/>
 		</div>
 	);

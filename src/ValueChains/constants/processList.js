@@ -9,7 +9,9 @@ const subSegmentList = () => {
 					name: `Phân đoạn nhánh ${id}-1`,
 					prevId: `segment-${id}-1`,
 					nextId: `sub-segment-${id}-2`,
-					type: 'subSegment'
+					type: 'subSegment',
+					backgroundColor: '#ffffff',
+					textColor: '#272727'
 				},
 				{
 					id: `sub-segment-${id}-2`,
@@ -20,7 +22,9 @@ const subSegmentList = () => {
 						nextId: `segment-${2}-5`,
 						index: 4
 					},
-					type: 'subSegment'
+					type: 'subSegment',
+					backgroundColor: '#ffffff',
+					textColor: '#272727'
 				}
 			]
 		},
@@ -33,7 +37,9 @@ const subSegmentList = () => {
 					name: `Phân đoạn nhánh ${id}-12`,
 					prevId: `segment-${id}-2`,
 					nextId: `sub-segment-${id}-22`,
-					type: 'subSegment'
+					type: 'subSegment',
+					backgroundColor: '#ffffff',
+					textColor: '#272727'
 				},
 				{
 					id: `sub-segment-${id}-22`,
@@ -44,7 +50,9 @@ const subSegmentList = () => {
 						nextId: `segment-${3}-5`,
 						index: 4
 					},
-					type: 'subSegment'
+					type: 'subSegment',
+					backgroundColor: '#ffffff',
+					textColor: '#272727'
 				}
 			]
 		},
@@ -61,7 +69,9 @@ const subSegmentList = () => {
 						nextId: `segment-${3}-6`,
 						index: 5
 					},
-					type: 'subSegment'
+					type: 'subSegment',
+					backgroundColor: '#ffffff',
+					textColor: '#272727'
 				}
 			]
 		},
@@ -74,7 +84,9 @@ const subSegmentList = () => {
 					name: `Phân đoạn nhánh ${id}1-1`,
 					prevId: `segment-${id}-1`,
 					nextId: `sub-segment-${id}1-2`,
-					type: 'subSegment'
+					type: 'subSegment',
+					backgroundColor: '#ffffff',
+					textColor: '#272727'
 				},
 				{
 					id: `sub-segment-${id}1-2`,
@@ -82,7 +94,9 @@ const subSegmentList = () => {
 					prevId: `sub-segment-${id}1-1`,
 					nextId: `sub-segment-${id}1-3`,
 					nextNode: null,
-					type: 'subSegment'
+					type: 'subSegment',
+					backgroundColor: '#ffffff',
+					textColor: '#272727'
 				},
 
 				{
@@ -91,7 +105,9 @@ const subSegmentList = () => {
 					prevId: `sub-segment-${id}1-2`,
 					nextId: null,
 					nextNode: null,
-					type: 'subSegment'
+					type: 'subSegment',
+					backgroundColor: '#ffffff',
+					textColor: '#272727'
 				}
 			]
 		},
@@ -103,7 +119,9 @@ const subSegmentList = () => {
 					name: `Phân đoạn nhánh ${id}4-1`,
 					prevId: `segment-${id}-4`,
 					nextId: `sub-segment-${id}4-2`,
-					type: 'subSegment'
+					type: 'subSegment',
+					backgroundColor: '#ffffff',
+					textColor: '#272727'
 				},
 				{
 					id: `sub-segment-${id}4-2`,
@@ -111,7 +129,9 @@ const subSegmentList = () => {
 					prevId: `sub-segment-${id}4-1`,
 					nextId: `sub-segment-${id}4-3`,
 					nextNode: null,
-					type: 'subSegment'
+					type: 'subSegment',
+					backgroundColor: '#ffffff',
+					textColor: '#272727'
 				},
 
 				{
@@ -120,7 +140,9 @@ const subSegmentList = () => {
 					prevId: `sub-segment-${id}4-2`,
 					nextId: null,
 					nextNode: null,
-					type: 'subSegment'
+					type: 'subSegment',
+					backgroundColor: '#ffffff',
+					textColor: '#272727'
 				}
 			]
 		}
@@ -135,7 +157,9 @@ const segmentList = (id) => {
 			prevId: null,
 			nextId: `segment-${id}-2`,
 			type: 'segment',
-			index: 0
+			index: 0,
+			backgroundColor: '#ffffff',
+			textColor: '#272727'
 		},
 		{
 			id: `segment-${id}-2`,
@@ -143,7 +167,9 @@ const segmentList = (id) => {
 			prevId: `segment-${id}-1`,
 			nextId: `segment-${id}-3`,
 			type: 'segment',
-			index: 1
+			index: 1,
+			backgroundColor: '#ffffff',
+			textColor: '#272727'
 		},
 		{
 			id: `segment-${id}-3`,
@@ -151,7 +177,9 @@ const segmentList = (id) => {
 			prevId: `segment-${id}-2`,
 			nextId: `segment-${id}-4`,
 			type: 'segment',
-			index: 2
+			index: 2,
+			backgroundColor: '#ffffff',
+			textColor: '#272727'
 		},
 		{
 			id: `segment-${id}-4`,
@@ -159,7 +187,9 @@ const segmentList = (id) => {
 			prevId: `segment-${id}-3`,
 			nextId: `segment-${id}-5`,
 			type: 'segment',
-			index: 3
+			index: 3,
+			backgroundColor: '#ffffff',
+			textColor: '#272727'
 		},
 		{
 			id: `segment-${id}-5`,
@@ -167,7 +197,9 @@ const segmentList = (id) => {
 			prevId: `segment-${id}-4`,
 			nextId: `segment-${id}-6`,
 			type: 'segment',
-			index: 4
+			index: 4,
+			backgroundColor: '#ffffff',
+			textColor: '#272727'
 		},
 		{
 			id: `segment-${id}-6`,
@@ -175,7 +207,9 @@ const segmentList = (id) => {
 			prevId: `segment-${id}-5`,
 			nextId: `segment-${id}-7`,
 			type: 'segment',
-			index: 5
+			index: 5,
+			backgroundColor: '#ffffff',
+			textColor: '#272727'
 		},
 		{
 			id: `segment-${id}-7`,
@@ -183,7 +217,9 @@ const segmentList = (id) => {
 			prevId: `segment-${id}-6`,
 			nextId: null,
 			type: 'segment',
-			index: 6
+			index: 6,
+			backgroundColor: '#ffffff',
+			textColor: '#272727'
 		}
 	];
 };
@@ -196,7 +232,9 @@ const processList = [
 		subSegmentChains: subSegmentList(1),
 		type: 'process',
 		color: 'a',
-		index: 0
+		index: 0,
+		backgroundColor: '#E78895',
+		textColor: '#272727'
 	},
 	{
 		id: 'process-2',
@@ -204,7 +242,9 @@ const processList = [
 		segmentList: segmentList(2),
 		type: 'process',
 		color: 'b',
-		index: 1
+		index: 1,
+		backgroundColor: '#E8C872',
+		textColor: '#272727'
 	},
 	{
 		id: 'process-3',
@@ -212,7 +252,9 @@ const processList = [
 		segmentList: segmentList(3),
 		type: 'process',
 		color: 'c',
-		index: 2
+		index: 2,
+		backgroundColor: '#BED1CF',
+		textColor: '#272727'
 	}
 ];
 

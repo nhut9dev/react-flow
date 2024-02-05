@@ -15,7 +15,9 @@ const ProcessNodeLayout = ({ data }) => {
 			style={data?.style ? data?.style : {}}
 		>
 			<div className={styles['processNodeLayout']}>
-				<div>{data?.label}</div>
+				<div style={{ color: data?.style?.color || '#272727' }}>
+					{data?.label}
+				</div>
 
 				<Handle
 					id="targetProcess"
@@ -28,6 +30,7 @@ const ProcessNodeLayout = ({ data }) => {
 			<NodeToolbar
 				width={170}
 				open={data?.originData.id === selectedNode?.id}
+				node={data}
 			/>
 		</div>
 	);

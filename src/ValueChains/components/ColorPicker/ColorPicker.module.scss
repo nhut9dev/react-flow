@@ -1,2 +1,34 @@
 .colorPickerWrapper {
+	position: relative;
+	display: flex;
+	justify-content: center;
+}
+
+.popupWrapper {
+	color: #272727;
+	padding: 5px;
+	border-radius: 10px;
+	position: absolute;
+	top: 40px;
+	background-color: #ffffff;
+	border: 1px solid #27272799;
+	.colorRow {
+		display: flex;
+		justify-content: space-around;
+		gap: 10px;
+	}
+	.sketchPicker {
+		width: 240px;
+		border: none !important;
+		box-shadow: none !important;
+	}
+	.resultColorButton {
+		border: 1px solid #27272799;
+		height: 24px;
+		width: 50px;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		padding: 0 !important;
+	}
 }
