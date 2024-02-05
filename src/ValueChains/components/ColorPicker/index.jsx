@@ -16,7 +16,6 @@ const ColorPicker = ({
 	const [open, setOpen] = useState(false);
 	const [isBgColorActive, setIsBgColorActive] = useState(true);
 	const { selectedNode } = useNodeStore();
-	console.log('🚀 ~ selectedNode:', selectedNode);
 
 	const [bgColor, setBgColor] = useState(backgroundColor);
 	const [textColor, setTextColor] = useState(textColorProp);
