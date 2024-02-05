@@ -1,19 +1,12 @@
-const colors = {
-	a: {
-		id: 'a',
-		bgColor: '',
-		textColor: ''
+const COLORS = {
+	PRIMARY: {
+		id: 'primary',
+		hex: '#32A1C8'
 	},
-	b: {
-		id: 'b',
-		bgColor: '',
-		textColor: ''
-	},
-	c: {
-		id: 'c',
-		bgColor: '',
-		textColor: ''
+	SECONDARY: {
+		id: 'secondary',
+		hex: '#FEA800'
 	}
 };
 
-export default colors;
+export default COLORS;

@@ -5,9 +5,11 @@ import processList from './constants/processList';
 import { convertEdgesData, convertNodesData } from '../utils';
 import { edgeTypes, nodeTypes } from './constants/react-flow';
 import { useNodeStore } from '../hooks/useStores';
+import { Button } from 'antd';
 
 const ValueChains = () => {
-	const { selectedNode, setSelectedNode } = useNodeStore();
+	const { selectedNode, onChangeSelectedNode } = useNodeStore();
+	console.log('🚀 ~ ValueChains ~ selectedNode:', selectedNode);
 
 	const [nodes, setNodes, onNodesChange] = useNodesState(
 		convertNodesData(processList)
@@ -23,28 +25,48 @@ const ValueChains = () => {
 
 	return (
 		<>
+			<div>
+				<Button onClick={() => console.log(nodes)}>Log nodes</Button>
+				<Button
+					onClick={() => {
+						setNodes((nodes) => {
+							return nodes.map((node) => ({
+								...node,
+								data: {
+									...node.data,
+									style: node?.data?.style
+										? {
+												backgroundColor: '#E86071'
+										  }
+										: {}
+								},
+								style: { backgroundColor: '#E86071' }
+							}));
+						});
+					}}
+				>
+					Update nodes
+				</Button>
+			</div>
 			<ReactFlow
 				nodeTypes={nodeTypes}
 				edgeTypes={edgeTypes}
-				onNodeDragStart={(node1, node2, node3, node4) =>
-					console.log(node1, node2, node3, node4)
-				}
-				onNodeDragStop={(node1, node2, node3, node4) =>
-					console.log(node1, node2, node3, node4)
-				}
 				nodes={nodes}
 				edges={edges}
 				onNodesChange={onNodesChange}
 				onEdgesChange={onEdgesChange}
 				onConnect={onConnect}
+				onNodeClick={(_, node) => {
+					onChangeSelectedNode(node, setNodes);
+				}}
 				onEdgeClick={() => {
 					if (selectedNode) {
-						setSelectedNode(null);
+						onChangeSelectedNode(null, setNodes);
 					}
 				}}
 				onPaneClick={() => {
 					if (selectedNode) {
-						setSelectedNode(null);
+						onChangeSelectedNode(null, setNodes);
 					}
 				}}
 			/>

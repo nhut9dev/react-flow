@@ -13,14 +13,44 @@ const checkTypeNode = (type) => {
 	}
 };
 
-const subSegmentChainLength = (segments, subSegments) => {
-	const lengthChains = subSegments[subSegments.length - 1].nextId
-		? segments.findIndex(
-				(item) => item.id === subSegments[subSegments.length - 1].nextId
-		  ) - segments.findIndex((item) => item.id === subSegments[0].prevId)
-		: 1;
+const checkTargetInChain = (segments, subs) => {
+	const targetId = subs[subs.length - 1].nextId;
+	return !targetId || segments.map((item) => item.id).includes(targetId);
+};
 
-	return subSegments.length > lengthChains ? subSegments.length : lengthChains;
+const inChainLength = 2;
+const inChainRange = 2;
+const outChainRange = 2;
+const outTargetIndex = 1;
+
+const inChain = 1;
+const outChain = 10;
+
+const subSegmentChainLength = (segments, subSegments) => {
+	const hasTargetNode = subSegments?.[subSegments.length - 1]?.nextId;
+	const targetNode = subSegments?.[subSegments.length - 1]?.nextNode;
+
+	const isTargetInChain =
+		!hasTargetNode || segments.map((item) => item.id).includes(hasTargetNode);
+
+	const prevNode = segments.find((item) => item.id === subSegments?.[0].prevId);
+	const chainsLength = subSegments.length * inChainLength;
+
+	if (isTargetInChain) {
+		if (hasTargetNode) {
+			return (
+				inChain *
+				((targetNode.index - prevNode.index) * inChainRange + chainsLength)
+			);
+		}
+		return chainsLength + prevNode.index;
+	} else {
+		return (
+			outChain *
+			((targetNode.index * outTargetIndex - prevNode.index) * outChainRange +
+				chainsLength)
+		);
+	}
 };
 
 const convertNodesData = (nodes) => {
@@ -42,7 +72,7 @@ const convertNodesData = (nodes) => {
 
 		const process = {
 			id: proc.id,
-			zIndex: 2,
+			zIndex: 1,
 			type: checkTypeNode(proc.type),
 			position: {
 				x: x,
@@ -61,7 +91,7 @@ const convertNodesData = (nodes) => {
 				x += nodeLayout.width + (idx === 0 ? 50 : 0);
 				const segment = {
 					id: seg.id,
-					zIndex: 2,
+					zIndex: 1,
 					type: checkTypeNode(seg.type),
 					position: {
 						x: x,
@@ -85,7 +115,11 @@ const convertNodesData = (nodes) => {
 				const subSegmentChains = proc.subSegmentChains
 					.map((item) => ({
 						...item,
-						level: subSegmentChainLength(proc.segmentList, item.nodes)
+						level: subSegmentChainLength(
+							proc.segmentList,
+							item.nodes,
+							proc.subSegmentChains
+						)
 					}))
 					.sort((a, b) => a.level - b.level);
 
@@ -98,7 +132,7 @@ const convertNodesData = (nodes) => {
 									.position.x + 130;
 						return {
 							id: sub.id,
-							zIndex: 2,
+							zIndex: 1,
 							type: checkTypeNode(sub.type),
 							position: {
 								x: subX,
@@ -126,6 +160,13 @@ const convertNodesData = (nodes) => {
 	});
 
 	return resultNodes.flat(Infinity);
+};
+
+const segmentHandle = {
+	sourceSegment: 'sourceSegment',
+	targetSegment: 'targetSegment',
+	targetSegmentOutChain: 'targetSegmentOutChain',
+	sourceProcess: 'sourceProcess'
 };
 
 const convertEdgesData = (nodes) => {
@@ -176,8 +217,10 @@ const convertEdgesData = (nodes) => {
 							zIndex: 1,
 							source: idx === 0 ? sub.prevId : sub.id,
 							target: idx !== 0 ? sub.nextId : sub.id,
-							sourceHandle: idx === 0 ? 'top' : 'bottom',
-							targetHandle: idx === 0 ? 'bottom' : 'top',
+							sourceHandle: segmentHandle.sourceSegment,
+							targetHandle: checkTargetInChain(node.segmentList, item.nodes)
+								? segmentHandle.targetSegment
+								: segmentHandle.targetSegmentOutChain,
 							markerEnd: {
 								type: MarkerType.ArrowClosed,
 								width: 14,
@@ -199,8 +242,10 @@ const convertEdgesData = (nodes) => {
 									zIndex: 1,
 									source: sub.id,
 									target: sub.nextId,
-									sourceHandle: idx === 0 ? 'top' : 'bottom',
-									targetHandle: idx === 0 ? 'bottom' : 'top',
+									sourceHandle: segmentHandle.sourceSegment,
+									targetHandle: checkTargetInChain(node.segmentList, item.nodes)
+										? segmentHandle.targetSegment
+										: segmentHandle.targetSegmentOutChain,
 									markerEnd: {
 										type: MarkerType.ArrowClosed,
 										width: 14,

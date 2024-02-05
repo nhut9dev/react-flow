@@ -4,12 +4,15 @@ import NodeToolbar from '../../NodeToolbar';
 import { useNodeStore } from '../../../../hooks/useStores';
 
 const ProcessNodeLayout = ({ data }) => {
-	const { selectedNode, setSelectedNode } = useNodeStore();
+	const { selectedNode } = useNodeStore();
 
 	return (
 		<div
 			className={styles.processNodeLayoutWrapper}
-			onClick={() => setSelectedNode(data.originData)}
+			onMouseEnter={(e) => {
+				e.stopPropagation();
+			}}
+			style={data?.style ? data?.style : {}}
 		>
 			<div className={styles['processNodeLayout']}>
 				<div>{data?.label}</div>

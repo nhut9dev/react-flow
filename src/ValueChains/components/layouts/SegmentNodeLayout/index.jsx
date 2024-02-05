@@ -7,7 +7,7 @@ import NodeToolbar from '../../NodeToolbar';
 import { useNodeStore } from '../../../../hooks/useStores';
 
 const SegmentNodeLayout = ({ data }) => {
-	const { selectedNode, setSelectedNode } = useNodeStore();
+	const { selectedNode } = useNodeStore();
 	return (
 		<div
 			className={styles.segmentNodeLayoutWrapper}
@@ -24,10 +24,16 @@ const SegmentNodeLayout = ({ data }) => {
 						? { width: layoutConstant.subSegment.width }
 						: {}
 				}
-				onClick={() => setSelectedNode(data.originData)}
 			>
 				{data?.isFirst ? (
-					<FirstSegment style={{ height: '100%', width: '100%' }} />
+					<FirstSegment
+						style={{ height: '100%', width: '100%' }}
+						fill={
+							data?.style?.backgroundColor
+								? data?.style?.backgroundColor
+								: '#ffffff'
+						}
+					/>
 				) : (
 					<Segment style={{ height: '100%', width: '100%' }} />
 				)}
@@ -49,6 +55,12 @@ const SegmentNodeLayout = ({ data }) => {
 							position={Position.Bottom}
 							style={{ opacity: 0, bottom: 0, left: 90 }}
 							isConnectable={false}
+						/>
+						<Handle
+							id="targetSegmentOutChain"
+							type="target"
+							position={Position.Top}
+							style={{ opacity: 0, top: 0, left: 90 }}
 						/>
 					</>
 				)}

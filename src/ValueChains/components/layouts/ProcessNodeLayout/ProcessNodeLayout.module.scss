@@ -1,13 +1,16 @@
 .processNodeLayoutWrapper {
-	width: 230;
-	border: 1px solid black;
+	width: 230px;
 	height: 70px;
-	background: #ffffff;
+	background-color: #ffffff;
+	&:hover {
+		cursor: pointer;
+	}
 }
 
 .processNodeLayout {
 	width: 230px;
 	height: 70px;
+	border: 1px solid black;
 	position: relative;
 	display: flex;
 	align-items: center;

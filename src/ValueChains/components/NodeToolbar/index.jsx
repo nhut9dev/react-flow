@@ -2,6 +2,7 @@ import { useRef } from 'react';
 import styles from './NodeToolbar.module.scss';
 import PlusIcon from './plus-circle.svg?react';
 import useClickOutside from '../../../hooks/useClickOutside';
+import ColorPicker from '../ColorPicker';
 
 const NodeToolbar = ({ open, setOpen, width }) => {
 	const customRef = useRef();
@@ -20,6 +21,7 @@ const NodeToolbar = ({ open, setOpen, width }) => {
 				style={{ width: width, display: open ? 'flex' : 'none' }}
 			>
 				<PlusIcon />
+				<ColorPicker toolbarOpen={open} />
 			</div>
 		</div>
 	);

@@ -1,4 +1,5 @@
 import ValueChains from './ValueChains';
+import 'antd/dist/antd.css';
 
 function App() {
 	return (
